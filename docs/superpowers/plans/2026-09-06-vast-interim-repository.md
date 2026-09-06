@@ -93,7 +93,7 @@ git commit -m "build: add reproducible VAST snapshot tooling"
 - 创建：`tests/test_repository_firewall.py`
 - 创建：`tools/repository_firewall.py`
 
-- [ ] **步骤 1：编写失败测试**
+- [x] **步骤 1：编写失败测试**
 
 ```python
 @pytest.mark.parametrize("path", [
@@ -113,13 +113,13 @@ def test_allows_scientific_hashes_and_relative_runtime_inputs(tmp_path):
     assert scan_repository(tmp_path) == []
 ```
 
-- [ ] **步骤 2：运行测试确认正确失败**
+- [x] **步骤 2：运行测试确认正确失败**
 
 运行：`python -m pytest tests/test_repository_firewall.py -q`
 
 预期：FAIL，错误包含 `ModuleNotFoundError: No module named 'tools.repository_firewall'`。
 
-- [ ] **步骤 3：实现防火墙 CLI 与库接口**
+- [x] **步骤 3：实现防火墙 CLI 与库接口**
 
 ```python
 def scan_repository(root: Path) -> list[Finding]:
@@ -132,13 +132,13 @@ def main() -> int:
     return 1 if findings else 0
 ```
 
-- [ ] **步骤 4：运行测试确认通过**
+- [x] **步骤 4：运行测试确认通过**
 
 运行：`python -m pytest tests/test_repository_firewall.py -q`
 
 预期：全部通过。
 
-- [ ] **步骤 5：提交任务 2**
+- [x] **步骤 5：提交任务 2**
 
 ```text
 git add tools/repository_firewall.py tests/test_repository_firewall.py
