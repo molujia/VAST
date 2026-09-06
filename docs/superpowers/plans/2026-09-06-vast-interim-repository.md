@@ -32,7 +32,7 @@
 - 创建：`tests/test_snapshot_sources.py`
 - 创建：`tools/snapshot_sources.py`
 
-- [ ] **步骤 1：编写闭包和排除策略的失败测试**
+- [x] **步骤 1：编写闭包和排除策略的失败测试**
 
 ```python
 def test_collects_relative_imports_and_explicit_runtime_roots(tmp_path):
@@ -52,13 +52,13 @@ def test_inventory_hashes_source_and_destination(tmp_path):
     assert row["source_sha256"] == row["destination_sha256"]
 ```
 
-- [ ] **步骤 2：运行测试并确认因模块尚不存在而失败**
+- [x] **步骤 2：运行测试并确认因模块尚不存在而失败**
 
 运行：`python -m pytest tests/test_snapshot_sources.py -q`
 
 预期：FAIL，错误包含 `ModuleNotFoundError: No module named 'tools.snapshot_sources'`。
 
-- [ ] **步骤 3：实现最小同步器**
+- [x] **步骤 3：实现最小同步器**
 
 ```python
 PYTHON_ROOTS = (...最终 final_rcl 与运行时入口...)
@@ -74,13 +74,13 @@ def materialize_snapshot(source_root: Path, destination_root: Path) -> dict:
     ...
 ```
 
-- [ ] **步骤 4：运行测试确认通过**
+- [x] **步骤 4：运行测试确认通过**
 
 运行：`python -m pytest tests/test_snapshot_sources.py -q`
 
 预期：全部通过。
 
-- [ ] **步骤 5：提交任务 1**
+- [x] **步骤 5：提交任务 1**
 
 ```text
 git add tools/snapshot_sources.py tests/test_snapshot_sources.py docs/superpowers/plans/2026-09-06-vast-interim-repository.md
@@ -311,4 +311,3 @@ git -c 'credential.helper=!f() { echo username=x-access-token; echo password=$gi
 运行：`git ls-remote origin refs/heads/main`
 
 预期：远端 SHA 与 `git rev-parse HEAD` 完全一致。
-
