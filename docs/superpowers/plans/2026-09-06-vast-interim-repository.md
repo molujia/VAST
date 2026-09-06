@@ -252,21 +252,21 @@ git commit -m "feat: snapshot the selected VAST implementation"
 - 创建：`README.md`
 - 创建：`docs/provenance/README.md`
 
-- [ ] **步骤 1：编写 README**
+- [x] **步骤 1：编写 README**
 
 README 明确：该仓库是非最终暂存版；方法组成、三个实验臂、环境依赖、数据不随仓库分发、运行时输入、smoke/formal/status 命令入口，以及当前不承诺复现实验分数。
 
-- [ ] **步骤 2：编写 provenance 说明**
+- [x] **步骤 2：编写 provenance 说明**
 
 说明 `source-inventory.json` 字段、authority 名称、同步与验证命令；不写入本机或服务器绝对路径。
 
-- [ ] **步骤 3：运行文档和防火墙检查**
+- [x] **步骤 3：运行文档和防火墙检查**
 
 运行：`python tools/repository_firewall.py .`
 
 预期：退出码 0，输出 `repository firewall passed`。
 
-- [ ] **步骤 4：提交任务 5**
+- [x] **步骤 4：提交任务 5**
 
 ```text
 git add README.md docs/provenance/README.md
