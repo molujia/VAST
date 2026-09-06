@@ -298,7 +298,7 @@ git commit -m "docs: add interim VAST repository guide"
 
 预期：无未提交变更、无空白错误、无被禁止路径。
 
-- [ ] **步骤 3：使用临时 credential helper 推送**
+- [x] **步骤 3：使用临时 credential helper 推送**
 
 ```text
 git -c 'credential.helper=!f() { echo username=x-access-token; echo password=$git_personal_access_token; }; f' push origin main
@@ -306,7 +306,7 @@ git -c 'credential.helper=!f() { echo username=x-access-token; echo password=$gi
 
 预期：推送成功；remote URL 与本地 Git 配置均不包含 token。
 
-- [ ] **步骤 4：验证远端提交**
+- [x] **步骤 4：验证远端提交**
 
 运行：`git ls-remote origin refs/heads/main`
 
