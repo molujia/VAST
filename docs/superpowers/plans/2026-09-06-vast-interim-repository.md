@@ -278,7 +278,7 @@ git commit -m "docs: add interim VAST repository guide"
 **文件：**
 - 验证：仓库全部已跟踪内容
 
-- [ ] **步骤 1：运行完整本地门禁**
+- [x] **步骤 1：运行完整本地门禁**
 
 运行：`python -m pytest -q`
 
@@ -292,7 +292,7 @@ git commit -m "docs: add interim VAST repository guide"
 
 预期：防火墙通过。
 
-- [ ] **步骤 2：检查 Git 内容**
+- [x] **步骤 2：检查 Git 内容**
 
 运行：`git status --short`、`git diff --check`、`git ls-files`
 
