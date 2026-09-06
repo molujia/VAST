@@ -215,31 +215,31 @@ git commit -m "feat: add interim VAST facade"
 - 创建：`tests/test_run_final_rcl_*.py`
 - 创建：`docs/provenance/source-inventory.json`
 
-- [ ] **步骤 1：执行同步器**
+- [x] **步骤 1：执行同步器**
 
 运行：`python tools/snapshot_sources.py --source-root .. --destination-root .`
 
 预期：输出复制文件数量，生成的每个路径均不命中禁止项，来源/目标哈希一致。
 
-- [ ] **步骤 2：运行来源清单自校验**
+- [x] **步骤 2：运行来源清单自校验**
 
 运行：`python tools/snapshot_sources.py --destination-root . --verify-only`
 
 预期：退出码 0，输出 `source inventory valid`。
 
-- [ ] **步骤 3：运行不需要真实数据的聚焦测试**
+- [x] **步骤 3：运行不需要真实数据的聚焦测试**
 
 运行：`python -m pytest tests/test_final_rcl_contract.py tests/test_final_rcl_hdbscan_proxy.py tests/test_final_rcl_training.py tests/test_final_rcl_pairwise.py tests/test_final_rcl_oser.py tests/test_final_rcl_evaluation.py tests/test_final_rcl_execution.py tests/test_final_rcl_neural_request.py tests/test_final_rcl_oser_runner.py tests/test_final_rcl_real_execution.py tests/test_run_final_rcl_formal_cli.py tests/test_run_final_rcl_real_smoke_cli.py -q`
 
 预期：全部通过；如本机缺少 PyTorch，PyTorch 专属测试只允许由 pytest 显式 skip，不允许 import error。
 
-- [ ] **步骤 4：运行内部 import 闭包检查**
+- [x] **步骤 4：运行内部 import 闭包检查**
 
 运行：`python -m compileall -q src scripts`
 
 预期：退出码 0；随后删除由检查生成的缓存并由 `.gitignore` 阻断其提交。
 
-- [ ] **步骤 5：提交任务 4**
+- [x] **步骤 5：提交任务 4**
 
 ```text
 git add src/fixed_active_learning src/rcl_study src/nexusrcl_rebuild scripts configs tests/test_final_rcl_*.py tests/test_run_final_rcl_*.py docs/provenance/source-inventory.json

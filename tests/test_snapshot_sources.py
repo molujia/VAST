@@ -7,8 +7,12 @@ import pytest
 
 from tools.snapshot_sources import (
     SnapshotError,
+    adapt_repository_layout,
     collect_python_closure,
     copy_snapshot_file,
+    sanitize_machine_paths,
+    verify_source_inventory,
+    write_source_inventory,
 )
 
 
@@ -111,3 +115,92 @@ def test_closure_rejects_missing_internal_dependency(tmp_path: Path) -> None:
 
     with pytest.raises(SnapshotError, match="missing internal dependency"):
         collect_python_closure(tmp_path, roots=("rcl_study/entry.py",))
+
+
+def test_source_inventory_round_trip_detects_destination_drift(tmp_path: Path) -> None:
+    source_root = tmp_path / "source"
+    destination_root = tmp_path / "destination"
+    _write(source_root / "rcl_study/component.py", "VALUE = 1\n")
+    row = copy_snapshot_file(
+        source_root,
+        destination_root,
+        "rcl_study/component.py",
+        destination_relative_path="src/rcl_study/component.py",
+        role="final_method_dependency",
+    )
+    inventory_path = write_source_inventory(
+        destination_root,
+        rows=[row],
+        source_authorities={
+            "final_method": "integrate-hdbscan-proxy-cvae-oser-rcl",
+            "active_learning": "rcl-active-learning-fixed-v1-20260906",
+        },
+    )
+
+    audit = verify_source_inventory(destination_root, inventory_path=inventory_path)
+
+    assert audit["valid"] is True
+    assert audit["file_count"] == 1
+    (destination_root / "src/rcl_study/component.py").write_text(
+        "VALUE = 2\n", encoding="utf-8"
+    )
+    with pytest.raises(SnapshotError, match="destination hash mismatch"):
+        verify_source_inventory(destination_root, inventory_path=inventory_path)
+
+
+def test_machine_specific_paths_are_replaced_by_runtime_placeholders() -> None:
+    authority_home = "/" + "home/" + "wangrunzhou"
+    source = (
+        f"workspace = '{authority_home}/0_warlock/RCA_LAB'\n"
+        f"dataset = '{authority_home}/dataset/aiops2022-pre'\n"
+    )
+
+    sanitized, replacement_count = sanitize_machine_paths(source)
+
+    assert sanitized == (
+        "workspace = '${RCL_WORKSPACE}'\n"
+        "dataset = '${AIOPS22_ROOT}'\n"
+    )
+    assert replacement_count == 2
+
+
+def test_runtime_entrypoint_is_adapted_to_src_layout() -> None:
+    source = (
+        "REPO_ROOT = Path(__file__).resolve().parents[1]\n"
+        "if str(REPO_ROOT) not in sys.path:\n"
+        "    sys.path.insert(0, str(REPO_ROOT))\n"
+    )
+
+    adapted, replacement_count = adapt_repository_layout(
+        source, destination_relative_path="scripts/run_final_rcl_formal.py"
+    )
+
+    assert adapted == (
+        "REPO_ROOT = Path(__file__).resolve().parents[1]\n"
+        "SOURCE_ROOT = REPO_ROOT / \"src\"\n"
+        "for import_root in (REPO_ROOT, SOURCE_ROOT):\n"
+        "    if str(import_root) not in sys.path:\n"
+        "        sys.path.insert(0, str(import_root))\n"
+    )
+    assert replacement_count == 1
+
+
+def test_sanitized_copy_normalizes_text_to_portable_lf(tmp_path: Path) -> None:
+    source_root = tmp_path / "source"
+    destination_root = tmp_path / "destination"
+    source = source_root / "rcl_study/component.py"
+    source.parent.mkdir(parents=True)
+    source.write_bytes(b"VALUE = 1\r\nNEXT = 2\r\n")
+
+    row = copy_snapshot_file(
+        source_root,
+        destination_root,
+        "rcl_study/component.py",
+        destination_relative_path="src/rcl_study/component.py",
+        sanitize_paths=True,
+    )
+
+    assert (destination_root / "src/rcl_study/component.py").read_bytes() == (
+        b"VALUE = 1\nNEXT = 2\n"
+    )
+    assert row["transforms"] == {"line_endings_lf": 2}

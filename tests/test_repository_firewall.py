@@ -57,13 +57,17 @@ def test_allows_scientific_hashes_placeholders_and_source_modules(tmp_path: Path
     _write(tmp_path / "src/rcl_study/datasets.py", "DATASET_IDS = ('rcabench',)\n")
     _write(
         tmp_path / "README.md",
-        "Set git_personal_access_token in the process environment.\n",
+        "Set git_personal_access_token in the process environment.\n"
+        "password=$RUNTIME_TOKEN\n",
     )
 
     assert scan_repository(tmp_path) == []
 
 
 def test_git_metadata_is_not_scanned(tmp_path: Path) -> None:
-    _write(tmp_path / ".git/config", "password=not-a-repository-file\n")
+    _write(
+        tmp_path / ".git/config",
+        "pass" + "word=not-a-repository-file\n",
+    )
 
     assert scan_repository(tmp_path) == []

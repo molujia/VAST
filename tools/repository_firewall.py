@@ -69,7 +69,7 @@ SECRET_PATTERNS = (
     re.compile(r"-----BEGIN (?:OPENSSH |RSA |EC |DSA )?PRIVATE KEY-----"),
     re.compile(
         r"(?i)\b(?:api[_-]?key|access[_-]?token|password|secret)\s*[:=]\s*"
-        r"['\"]?(?!\$\{|<|example|changeme|none|null)[^\s'\"]{12,}"
+        r"['\"]?(?!\$|<|example|changeme|none|null)[^\s'\"]{12,}"
     ),
 )
 ABSOLUTE_PATH_PATTERNS = (

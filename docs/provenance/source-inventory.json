@@ -1,0 +1,722 @@
+{
+  "schema_version": "vast-source-inventory-v1",
+  "snapshot_date": "2026-09-06",
+  "method_id": "hdbscan-proxy-cvae-compatible-oser-p02",
+  "source_authorities": {
+    "active_learning": "rcl-active-learning-fixed-v1-20260906",
+    "integration_change": "integrate-hdbscan-proxy-cvae-oser-rcl",
+    "pairwise_backend": "half_supervise/nexusrcl_rebuild"
+  },
+  "file_count": 96,
+  "files": [
+    {
+      "source_path": "configs/final_rcl/hdbscan_proxy_cvae_oser_seed42.json",
+      "destination_path": "configs/final_rcl/hdbscan_proxy_cvae_oser_seed42.json",
+      "source_sha256": "c2cb5c6bd709933ac4e11b39369ed46184b7a6c5a3d99040b4b8fda25dee4229",
+      "destination_sha256": "c2cb5c6bd709933ac4e11b39369ed46184b7a6c5a3d99040b4b8fda25dee4229",
+      "role": "frozen_method_config"
+    },
+    {
+      "source_path": "scripts/__init__.py",
+      "destination_path": "scripts/__init__.py",
+      "source_sha256": "eec4834c15133a9e9fd6500d183f0ec028aa2037480f237d6c9bbb2331a2aecc",
+      "destination_sha256": "eec4834c15133a9e9fd6500d183f0ec028aa2037480f237d6c9bbb2331a2aecc",
+      "role": "runtime_entrypoint"
+    },
+    {
+      "source_path": "scripts/prepare_conservative_lofo_formal_calibration.py",
+      "destination_path": "scripts/prepare_conservative_lofo_formal_calibration.py",
+      "source_sha256": "d4cd8f912d7048687e57913825ba5816b63d0a8d3607e9e691670241f8b6f798",
+      "destination_sha256": "d4cd8f912d7048687e57913825ba5816b63d0a8d3607e9e691670241f8b6f798",
+      "role": "runtime_entrypoint"
+    },
+    {
+      "source_path": "scripts/prepare_conservative_lofo_formal_screen.py",
+      "destination_path": "scripts/prepare_conservative_lofo_formal_screen.py",
+      "source_sha256": "fcf186736eae3df94f1e6c50e37ddd2dd271d7b3ed6af1840bb8d9875f2bf776",
+      "destination_sha256": "33f0e362d8ca6f535d11710cdff6741769f38f41b1bdeee8de5c8e579fee128a",
+      "role": "runtime_entrypoint",
+      "transforms": {
+        "machine_path_placeholders": 2
+      }
+    },
+    {
+      "source_path": "scripts/run_final_rcl_formal.py",
+      "destination_path": "scripts/run_final_rcl_formal.py",
+      "source_sha256": "63d72861b5bb13b6db456054afb92e9618d1c4556741b327c09710ea162d0488",
+      "destination_sha256": "59b564a4ff60340565b102ea6537842e302574ecd0bc0c8340c887f7dc6bce6b",
+      "role": "runtime_entrypoint",
+      "transforms": {
+        "src_layout_entrypoint": 1
+      }
+    },
+    {
+      "source_path": "scripts/run_final_rcl_real_smoke.py",
+      "destination_path": "scripts/run_final_rcl_real_smoke.py",
+      "source_sha256": "e27f622b53c66899e2410bf3278a890390bdffedbbaff3b32f83691cf317391f",
+      "destination_sha256": "841db3849b38dd709905c082219b9011ca532022313830f73d0b4a4aaf485892",
+      "role": "runtime_entrypoint",
+      "transforms": {
+        "src_layout_entrypoint": 1
+      }
+    },
+    {
+      "source_path": "scripts/status_final_rcl.py",
+      "destination_path": "scripts/status_final_rcl.py",
+      "source_sha256": "90eaaa149d90cac8b7a7d73b2e3cbab18a8b233ec2d893fd86953bb8873581bf",
+      "destination_sha256": "6a8c9967b92105d504445ecd032671bf23781a015f741bb403d7e6d49f4f0b98",
+      "role": "runtime_entrypoint",
+      "transforms": {
+        "src_layout_entrypoint": 1
+      }
+    },
+    {
+      "source_path": "artifacts/rcl-active-learning-fixed-v1-20260906/src/fixed_active_learning/__init__.py",
+      "destination_path": "src/fixed_active_learning/__init__.py",
+      "source_sha256": "5aa75b1abd24bd28b0324f2e5d7a96c721fa9e985bc87f3ba6711511b7fff7e3",
+      "destination_sha256": "5aa75b1abd24bd28b0324f2e5d7a96c721fa9e985bc87f3ba6711511b7fff7e3",
+      "role": "fixed_hdbscan_authority"
+    },
+    {
+      "source_path": "artifacts/rcl-active-learning-fixed-v1-20260906/src/fixed_active_learning/config.py",
+      "destination_path": "src/fixed_active_learning/config.py",
+      "source_sha256": "bdc2a09da4ae11010c5c06863a204d6a42af2da8c155fabf0a6b3dc27b07e237",
+      "destination_sha256": "bdc2a09da4ae11010c5c06863a204d6a42af2da8c155fabf0a6b3dc27b07e237",
+      "role": "fixed_hdbscan_authority"
+    },
+    {
+      "source_path": "artifacts/rcl-active-learning-fixed-v1-20260906/src/fixed_active_learning/lofo_contract.py",
+      "destination_path": "src/fixed_active_learning/lofo_contract.py",
+      "source_sha256": "79364f0fa2dcc21b8da1cf9d9805b238a26286b38b03046cee23b5a767dd4c37",
+      "destination_sha256": "79364f0fa2dcc21b8da1cf9d9805b238a26286b38b03046cee23b5a767dd4c37",
+      "role": "fixed_hdbscan_authority"
+    },
+    {
+      "source_path": "artifacts/rcl-active-learning-fixed-v1-20260906/src/fixed_active_learning/pipeline.py",
+      "destination_path": "src/fixed_active_learning/pipeline.py",
+      "source_sha256": "66deee3fe02bb646e77fa795262d1b0d9782c1f7b3e867168cf683063cb444b2",
+      "destination_sha256": "66deee3fe02bb646e77fa795262d1b0d9782c1f7b3e867168cf683063cb444b2",
+      "role": "fixed_hdbscan_authority"
+    },
+    {
+      "source_path": "artifacts/rcl-active-learning-fixed-v1-20260906/src/fixed_active_learning/plan_contract.py",
+      "destination_path": "src/fixed_active_learning/plan_contract.py",
+      "source_sha256": "ec76d9e2dd13534c07d75694226bb2bd12ef6b90cf541295a3fe2edfd6f10db9",
+      "destination_sha256": "ec76d9e2dd13534c07d75694226bb2bd12ef6b90cf541295a3fe2edfd6f10db9",
+      "role": "fixed_hdbscan_authority"
+    },
+    {
+      "source_path": "half_supervise/src/nexusrcl_rebuild/__init__.py",
+      "destination_path": "src/nexusrcl_rebuild/__init__.py",
+      "source_sha256": "194f870ac0d58dbcd6a3d31babe79d321ee6252244525f65a882c9b69637d98e",
+      "destination_sha256": "194f870ac0d58dbcd6a3d31babe79d321ee6252244525f65a882c9b69637d98e",
+      "role": "minimal_pairwise_backend"
+    },
+    {
+      "source_path": "half_supervise/src/nexusrcl_rebuild/training/__init__.py",
+      "destination_path": "src/nexusrcl_rebuild/training/__init__.py",
+      "source_sha256": "ad76c49f47c6ae71093821ee05d1f6d563a142317b9ecdfcb69e405aaaba98d5",
+      "destination_sha256": "ad76c49f47c6ae71093821ee05d1f6d563a142317b9ecdfcb69e405aaaba98d5",
+      "role": "minimal_pairwise_backend"
+    },
+    {
+      "source_path": "half_supervise/src/nexusrcl_rebuild/training/pairwise_backend.py",
+      "destination_path": "src/nexusrcl_rebuild/training/pairwise_backend.py",
+      "source_sha256": "a393e044568ba8b8e864a7e64fe13479a7a3979a2b8f2a0c08244bb8bbb76dcd",
+      "destination_sha256": "a393e044568ba8b8e864a7e64fe13479a7a3979a2b8f2a0c08244bb8bbb76dcd",
+      "role": "minimal_pairwise_backend"
+    },
+    {
+      "source_path": "rcl_study/__init__.py",
+      "destination_path": "src/rcl_study/__init__.py",
+      "source_sha256": "e4e97547eff005dc572f41b5aaa4e48d418f910d2448f4db968a506818f09d58",
+      "destination_sha256": "e4e97547eff005dc572f41b5aaa4e48d418f910d2448f4db968a506818f09d58",
+      "role": "final_method_dependency"
+    },
+    {
+      "source_path": "rcl_study/aiops25.py",
+      "destination_path": "src/rcl_study/aiops25.py",
+      "source_sha256": "95629cdb92dd8872817658c74398c211cb045394b5b38745942b80fb42361d34",
+      "destination_sha256": "95629cdb92dd8872817658c74398c211cb045394b5b38745942b80fb42361d34",
+      "role": "final_method_dependency"
+    },
+    {
+      "source_path": "rcl_study/artifacts.py",
+      "destination_path": "src/rcl_study/artifacts.py",
+      "source_sha256": "ec774a40c7845ee5056371effd72046cdb115ad825b2b708e36ecd304890eef8",
+      "destination_sha256": "ec774a40c7845ee5056371effd72046cdb115ad825b2b708e36ecd304890eef8",
+      "role": "final_method_dependency"
+    },
+    {
+      "source_path": "rcl_study/combined_active_learning_acquisition.py",
+      "destination_path": "src/rcl_study/combined_active_learning_acquisition.py",
+      "source_sha256": "4af758f94cb3357fc7dae13a5c2d50292db26f3bfd8c477afc6c2165cd3ac3a4",
+      "destination_sha256": "4af758f94cb3357fc7dae13a5c2d50292db26f3bfd8c477afc6c2165cd3ac3a4",
+      "role": "final_method_dependency"
+    },
+    {
+      "source_path": "rcl_study/combined_active_learning_baselines.py",
+      "destination_path": "src/rcl_study/combined_active_learning_baselines.py",
+      "source_sha256": "f9642af590669d5f73b9d8a1db40bde0d2dee765dfe33b42a35d2f107ff4c7a0",
+      "destination_sha256": "f9642af590669d5f73b9d8a1db40bde0d2dee765dfe33b42a35d2f107ff4c7a0",
+      "role": "final_method_dependency"
+    },
+    {
+      "source_path": "rcl_study/combined_active_learning_clustering.py",
+      "destination_path": "src/rcl_study/combined_active_learning_clustering.py",
+      "source_sha256": "349f603064a4eddb817c009e493361f9e47df0f57355a5b58cabe8fddad29e92",
+      "destination_sha256": "349f603064a4eddb817c009e493361f9e47df0f57355a5b58cabe8fddad29e92",
+      "role": "final_method_dependency"
+    },
+    {
+      "source_path": "rcl_study/combined_active_learning_geometry_smoke.py",
+      "destination_path": "src/rcl_study/combined_active_learning_geometry_smoke.py",
+      "source_sha256": "a1c62251cd80b34e21bcaa752e542df8e358467e1d5c08bbcd1aa214f7c67479",
+      "destination_sha256": "d245af423f700b9474714c051f5558d55cf56d321433622278b67e5877307c81",
+      "role": "final_method_dependency",
+      "transforms": {
+        "machine_path_placeholders": 1
+      }
+    },
+    {
+      "source_path": "rcl_study/combined_active_learning_lofo.py",
+      "destination_path": "src/rcl_study/combined_active_learning_lofo.py",
+      "source_sha256": "8731f8cfe4875d93d7d572973133fafb71f982f8605110c838254dc03c5d61b6",
+      "destination_sha256": "8731f8cfe4875d93d7d572973133fafb71f982f8605110c838254dc03c5d61b6",
+      "role": "final_method_dependency"
+    },
+    {
+      "source_path": "rcl_study/combined_active_learning_rcl.py",
+      "destination_path": "src/rcl_study/combined_active_learning_rcl.py",
+      "source_sha256": "c32e167c00e24d8fa6cc2c102f3947e009a5ef82063391ae0991ae87093dea72",
+      "destination_sha256": "c32e167c00e24d8fa6cc2c102f3947e009a5ef82063391ae0991ae87093dea72",
+      "role": "final_method_dependency"
+    },
+    {
+      "source_path": "rcl_study/combined_active_learning_representation.py",
+      "destination_path": "src/rcl_study/combined_active_learning_representation.py",
+      "source_sha256": "14e048c42ba6b61dd02300c93b9ac06132584fa62b1358154e853d2916c07539",
+      "destination_sha256": "14e048c42ba6b61dd02300c93b9ac06132584fa62b1358154e853d2916c07539",
+      "role": "final_method_dependency"
+    },
+    {
+      "source_path": "rcl_study/combined_active_learning_schemas.py",
+      "destination_path": "src/rcl_study/combined_active_learning_schemas.py",
+      "source_sha256": "75d123dfe6046becabdcd79f1ec293b9a058798837e72089b3a5e2a91dea8c7b",
+      "destination_sha256": "75d123dfe6046becabdcd79f1ec293b9a058798837e72089b3a5e2a91dea8c7b",
+      "role": "final_method_dependency"
+    },
+    {
+      "source_path": "rcl_study/combined_active_learning_tuning.py",
+      "destination_path": "src/rcl_study/combined_active_learning_tuning.py",
+      "source_sha256": "0d92dead166f813c13520c89bcb627909280ef7e51b178af8c3022d8d55b46e7",
+      "destination_sha256": "0d92dead166f813c13520c89bcb627909280ef7e51b178af8c3022d8d55b46e7",
+      "role": "final_method_dependency"
+    },
+    {
+      "source_path": "rcl_study/combined_active_learning_tuning_structure.py",
+      "destination_path": "src/rcl_study/combined_active_learning_tuning_structure.py",
+      "source_sha256": "7fb7df1fe256d88a5350cfea9a15dccbc5cbe0572c78a4840542da947b832250",
+      "destination_sha256": "7fb7df1fe256d88a5350cfea9a15dccbc5cbe0572c78a4840542da947b832250",
+      "role": "final_method_dependency"
+    },
+    {
+      "source_path": "rcl_study/combined_active_learning_winner_analysis.py",
+      "destination_path": "src/rcl_study/combined_active_learning_winner_analysis.py",
+      "source_sha256": "6148caaae2e91dbfdeba966dcde3f1579b96f958e34855f5dbdf5aa2875f61e4",
+      "destination_sha256": "6148caaae2e91dbfdeba966dcde3f1579b96f958e34855f5dbdf5aa2875f61e4",
+      "role": "final_method_dependency"
+    },
+    {
+      "source_path": "rcl_study/conservative_lofo_authority.py",
+      "destination_path": "src/rcl_study/conservative_lofo_authority.py",
+      "source_sha256": "98abe08f83b0c53b5fd8facb36bacf039a1843badd8cb8d56f8e20e391e50b6f",
+      "destination_sha256": "98abe08f83b0c53b5fd8facb36bacf039a1843badd8cb8d56f8e20e391e50b6f",
+      "role": "final_method_dependency"
+    },
+    {
+      "source_path": "rcl_study/conservative_lofo_authority_scores.py",
+      "destination_path": "src/rcl_study/conservative_lofo_authority_scores.py",
+      "source_sha256": "8b0c1d55f366921a805a9b7198a27c117be9c6d87a6ebec2f93d8e7a708dc489",
+      "destination_sha256": "8b0c1d55f366921a805a9b7198a27c117be9c6d87a6ebec2f93d8e7a708dc489",
+      "role": "final_method_dependency"
+    },
+    {
+      "source_path": "rcl_study/conservative_lofo_base_bridge.py",
+      "destination_path": "src/rcl_study/conservative_lofo_base_bridge.py",
+      "source_sha256": "9f7fc0b50b6c0b46a214d41b9400efb4cf0d297bb34fa76bfe3cca226392a533",
+      "destination_sha256": "9f7fc0b50b6c0b46a214d41b9400efb4cf0d297bb34fa76bfe3cca226392a533",
+      "role": "final_method_dependency"
+    },
+    {
+      "source_path": "rcl_study/conservative_lofo_calibration.py",
+      "destination_path": "src/rcl_study/conservative_lofo_calibration.py",
+      "source_sha256": "552d0a663e24532514eb52763e70e66b0ee2d1aa0808afd2ca9f0247487328be",
+      "destination_sha256": "552d0a663e24532514eb52763e70e66b0ee2d1aa0808afd2ca9f0247487328be",
+      "role": "final_method_dependency"
+    },
+    {
+      "source_path": "rcl_study/conservative_lofo_formal_calibration.py",
+      "destination_path": "src/rcl_study/conservative_lofo_formal_calibration.py",
+      "source_sha256": "1624d6ad7da0d077a165f98e007c39fe6cec04fbec5ade1f25e4c8079a3d99f8",
+      "destination_sha256": "1624d6ad7da0d077a165f98e007c39fe6cec04fbec5ade1f25e4c8079a3d99f8",
+      "role": "final_method_dependency"
+    },
+    {
+      "source_path": "rcl_study/conservative_lofo_orchestration.py",
+      "destination_path": "src/rcl_study/conservative_lofo_orchestration.py",
+      "source_sha256": "93d35e8371263d95fb921f445ed38b1f90a0e6dea96c7c8e1d3096d475afc032",
+      "destination_sha256": "93d35e8371263d95fb921f445ed38b1f90a0e6dea96c7c8e1d3096d475afc032",
+      "role": "final_method_dependency"
+    },
+    {
+      "source_path": "rcl_study/conservative_lofo_oser.py",
+      "destination_path": "src/rcl_study/conservative_lofo_oser.py",
+      "source_sha256": "50b1cb2ed7c7871a5b977dd1203e65a7f0670f9aff7f25b2d35fdf27be27fa76",
+      "destination_sha256": "50b1cb2ed7c7871a5b977dd1203e65a7f0670f9aff7f25b2d35fdf27be27fa76",
+      "role": "final_method_dependency"
+    },
+    {
+      "source_path": "rcl_study/conservative_lofo_protocol.py",
+      "destination_path": "src/rcl_study/conservative_lofo_protocol.py",
+      "source_sha256": "1c1612e165c023c75519d91c9fc4f30c2dedd5ca60d5e7a9bdb0dd1f2da41a8a",
+      "destination_sha256": "1c1612e165c023c75519d91c9fc4f30c2dedd5ca60d5e7a9bdb0dd1f2da41a8a",
+      "role": "final_method_dependency"
+    },
+    {
+      "source_path": "rcl_study/conservative_lofo_query_bridge.py",
+      "destination_path": "src/rcl_study/conservative_lofo_query_bridge.py",
+      "source_sha256": "6eec3972b9b879e5e81d3a1a2b0feee3bafc14df322339816aac4c29c4d6f3ef",
+      "destination_sha256": "6eec3972b9b879e5e81d3a1a2b0feee3bafc14df322339816aac4c29c4d6f3ef",
+      "role": "final_method_dependency"
+    },
+    {
+      "source_path": "rcl_study/conservative_lofo_residual.py",
+      "destination_path": "src/rcl_study/conservative_lofo_residual.py",
+      "source_sha256": "b6e7d3cbfffc2c7aa95cf31d018442179d6589377240828919471c6ed23e5b12",
+      "destination_sha256": "b6e7d3cbfffc2c7aa95cf31d018442179d6589377240828919471c6ed23e5b12",
+      "role": "final_method_dependency"
+    },
+    {
+      "source_path": "rcl_study/conservative_lofo_screen_preparation.py",
+      "destination_path": "src/rcl_study/conservative_lofo_screen_preparation.py",
+      "source_sha256": "9423fe5564a768b6b1b66f7d09a189b867227d7260d5395324a4a45af3e5275f",
+      "destination_sha256": "9423fe5564a768b6b1b66f7d09a189b867227d7260d5395324a4a45af3e5275f",
+      "role": "final_method_dependency"
+    },
+    {
+      "source_path": "rcl_study/conservative_lofo_state.py",
+      "destination_path": "src/rcl_study/conservative_lofo_state.py",
+      "source_sha256": "19fb50a011b5ced161ef5207984716395b2304c9d4d546507a85756a4745488f",
+      "destination_sha256": "19fb50a011b5ced161ef5207984716395b2304c9d4d546507a85756a4745488f",
+      "role": "final_method_dependency"
+    },
+    {
+      "source_path": "rcl_study/datasets.py",
+      "destination_path": "src/rcl_study/datasets.py",
+      "source_sha256": "cfd25cbd025303370055be3bd59d1b96497fafefa124007b0f885569740a0698",
+      "destination_sha256": "256fc75bf13b27de1d6d3348c53907991c97fae3fe74b94da33c142bcdd47629",
+      "role": "final_method_dependency",
+      "transforms": {
+        "machine_path_placeholders": 3
+      }
+    },
+    {
+      "source_path": "rcl_study/final_rcl_contract.py",
+      "destination_path": "src/rcl_study/final_rcl_contract.py",
+      "source_sha256": "cf205f842192814c5244ce7407b6b7cb25f45ce5903e5b532cde3221f48f6201",
+      "destination_sha256": "cf205f842192814c5244ce7407b6b7cb25f45ce5903e5b532cde3221f48f6201",
+      "role": "final_method_dependency"
+    },
+    {
+      "source_path": "rcl_study/final_rcl_evaluation.py",
+      "destination_path": "src/rcl_study/final_rcl_evaluation.py",
+      "source_sha256": "667738b5ef7d21c39b18dfe7314e90936064a268f5cb9dc8b6febd8df64c147d",
+      "destination_sha256": "667738b5ef7d21c39b18dfe7314e90936064a268f5cb9dc8b6febd8df64c147d",
+      "role": "final_method_dependency"
+    },
+    {
+      "source_path": "rcl_study/final_rcl_execution.py",
+      "destination_path": "src/rcl_study/final_rcl_execution.py",
+      "source_sha256": "8ea63302c283852038fcc813f581e6bdb700064a6add1f54a18ce2db2d53fa83",
+      "destination_sha256": "8ea63302c283852038fcc813f581e6bdb700064a6add1f54a18ce2db2d53fa83",
+      "role": "final_method_dependency"
+    },
+    {
+      "source_path": "rcl_study/final_rcl_hdbscan_proxy.py",
+      "destination_path": "src/rcl_study/final_rcl_hdbscan_proxy.py",
+      "source_sha256": "d2c3cd817a0b8b647a5702aa08ec8986b012f575edfb40a10a70cd83369ca712",
+      "destination_sha256": "d2c3cd817a0b8b647a5702aa08ec8986b012f575edfb40a10a70cd83369ca712",
+      "role": "final_method_dependency"
+    },
+    {
+      "source_path": "rcl_study/final_rcl_oser.py",
+      "destination_path": "src/rcl_study/final_rcl_oser.py",
+      "source_sha256": "5ad5544a148f6e3723757afacebdbd04499f45314881c2aa8f2571fff912c7b6",
+      "destination_sha256": "5ad5544a148f6e3723757afacebdbd04499f45314881c2aa8f2571fff912c7b6",
+      "role": "final_method_dependency"
+    },
+    {
+      "source_path": "rcl_study/final_rcl_oser_runner.py",
+      "destination_path": "src/rcl_study/final_rcl_oser_runner.py",
+      "source_sha256": "98001ea56e6d4e4130626944d0536ba8e79a2a35fd6d71b50d4dd0c23113e2bd",
+      "destination_sha256": "98001ea56e6d4e4130626944d0536ba8e79a2a35fd6d71b50d4dd0c23113e2bd",
+      "role": "final_method_dependency"
+    },
+    {
+      "source_path": "rcl_study/final_rcl_pairwise.py",
+      "destination_path": "src/rcl_study/final_rcl_pairwise.py",
+      "source_sha256": "29655effcb69c4697cf3e71211a2636c0d4624340ede077edd3e312b58785779",
+      "destination_sha256": "29655effcb69c4697cf3e71211a2636c0d4624340ede077edd3e312b58785779",
+      "role": "final_method_dependency"
+    },
+    {
+      "source_path": "rcl_study/final_rcl_real_execution.py",
+      "destination_path": "src/rcl_study/final_rcl_real_execution.py",
+      "source_sha256": "e64b16e04ada9bd22cd6755a472c477c93e1ecfd34d6d3e2e388237541f9c42b",
+      "destination_sha256": "e64b16e04ada9bd22cd6755a472c477c93e1ecfd34d6d3e2e388237541f9c42b",
+      "role": "final_method_dependency"
+    },
+    {
+      "source_path": "rcl_study/final_rcl_training.py",
+      "destination_path": "src/rcl_study/final_rcl_training.py",
+      "source_sha256": "e7c6c67b0de0bbbda0968a46a3fcd853053baec3a1f32385080fac651c3ace51",
+      "destination_sha256": "e7c6c67b0de0bbbda0968a46a3fcd853053baec3a1f32385080fac651c3ace51",
+      "role": "final_method_dependency"
+    },
+    {
+      "source_path": "rcl_study/legacy_events.py",
+      "destination_path": "src/rcl_study/legacy_events.py",
+      "source_sha256": "3cd1d2505eafd2ebbf93e9106f778230f2d1212aa0bb3acb2512eda32995abc2",
+      "destination_sha256": "3cd1d2505eafd2ebbf93e9106f778230f2d1212aa0bb3acb2512eda32995abc2",
+      "role": "final_method_dependency"
+    },
+    {
+      "source_path": "rcl_study/orchestration.py",
+      "destination_path": "src/rcl_study/orchestration.py",
+      "source_sha256": "e1ecc2d221d30e142bebfc839feec87f43d97409933e4a3e05363870305a617d",
+      "destination_sha256": "e1ecc2d221d30e142bebfc839feec87f43d97409933e4a3e05363870305a617d",
+      "role": "final_method_dependency"
+    },
+    {
+      "source_path": "rcl_study/ordinary_multimodal_fusion.py",
+      "destination_path": "src/rcl_study/ordinary_multimodal_fusion.py",
+      "source_sha256": "b11f1ebbfb82f2d88431464be8dab28bf8bb26e9509e9068cbd27ab0f3f40939",
+      "destination_sha256": "b11f1ebbfb82f2d88431464be8dab28bf8bb26e9509e9068cbd27ab0f3f40939",
+      "role": "final_method_dependency"
+    },
+    {
+      "source_path": "rcl_study/ordinary_query_engine.py",
+      "destination_path": "src/rcl_study/ordinary_query_engine.py",
+      "source_sha256": "a35ccf461ddce4960e3e4f909f53e85730797bb5638002225e32c51f65d320d5",
+      "destination_sha256": "a35ccf461ddce4960e3e4f909f53e85730797bb5638002225e32c51f65d320d5",
+      "role": "final_method_dependency"
+    },
+    {
+      "source_path": "rcl_study/ordinary_strategy_pipeline.py",
+      "destination_path": "src/rcl_study/ordinary_strategy_pipeline.py",
+      "source_sha256": "cdb4e9c53aa056e47c150aa96e676353f198fa603d5c6c6a9c4c77a9d3406254",
+      "destination_sha256": "cdb4e9c53aa056e47c150aa96e676353f198fa603d5c6c6a9c4c77a9d3406254",
+      "role": "final_method_dependency"
+    },
+    {
+      "source_path": "rcl_study/ordinary_strategy_scoring.py",
+      "destination_path": "src/rcl_study/ordinary_strategy_scoring.py",
+      "source_sha256": "e6ef0d82460499ca6ab1df3df2e809ad7d34debbf1cf33934ff05baa2cee4828",
+      "destination_sha256": "e6ef0d82460499ca6ab1df3df2e809ad7d34debbf1cf33934ff05baa2cee4828",
+      "role": "final_method_dependency"
+    },
+    {
+      "source_path": "rcl_study/protocols.py",
+      "destination_path": "src/rcl_study/protocols.py",
+      "source_sha256": "4064c974066fdda156fe6e5db14fb81cbb5e07a693982c2ecbea3090320024f7",
+      "destination_sha256": "4064c974066fdda156fe6e5db14fb81cbb5e07a693982c2ecbea3090320024f7",
+      "role": "final_method_dependency"
+    },
+    {
+      "source_path": "rcl_study/pseudo_artifacts.py",
+      "destination_path": "src/rcl_study/pseudo_artifacts.py",
+      "source_sha256": "886927294be34a4d021faf8479afbf54e11c0fa9a2bfa7758566ef09b6492e69",
+      "destination_sha256": "886927294be34a4d021faf8479afbf54e11c0fa9a2bfa7758566ef09b6492e69",
+      "role": "final_method_dependency"
+    },
+    {
+      "source_path": "rcl_study/query_active_deepening.py",
+      "destination_path": "src/rcl_study/query_active_deepening.py",
+      "source_sha256": "5976d58d3e6195843b464720133838944abc5c938d6e316247fa48d66c0a90b3",
+      "destination_sha256": "83babc2bbde07c8a0c5a0723fc8c5605dae16b56260b07dd43fa56953938a49f",
+      "role": "final_method_dependency",
+      "transforms": {
+        "machine_path_placeholders": 5
+      }
+    },
+    {
+      "source_path": "rcl_study/query_active_learning.py",
+      "destination_path": "src/rcl_study/query_active_learning.py",
+      "source_sha256": "2068c946fa3aad59953add53b2a7d8c1164992b046438437f0a2938f9953112e",
+      "destination_sha256": "472770ff4d2343d16c1589cbec578f6e42ed65f131bd4e8b8cd9aec985c5809d",
+      "role": "final_method_dependency",
+      "transforms": {
+        "machine_path_placeholders": 3
+      }
+    },
+    {
+      "source_path": "rcl_study/query_active_real_execution.py",
+      "destination_path": "src/rcl_study/query_active_real_execution.py",
+      "source_sha256": "34362825af69e5fd6cd2922f3f90086d0b5e8bd6f578eb8209e9e3a8e3f21039",
+      "destination_sha256": "c30c7f149b36e051b5ce973edb14bba31dffd54855d152e7eee277a2f50890c7",
+      "role": "final_method_dependency",
+      "transforms": {
+        "machine_path_placeholders": 1
+      }
+    },
+    {
+      "source_path": "rcl_study/rcabench.py",
+      "destination_path": "src/rcl_study/rcabench.py",
+      "source_sha256": "852e65f9ee666386d70ff84b3a78d32ebd8d53ac573261ef9050057a3dc33ae1",
+      "destination_sha256": "852e65f9ee666386d70ff84b3a78d32ebd8d53ac573261ef9050057a3dc33ae1",
+      "role": "final_method_dependency"
+    },
+    {
+      "source_path": "rcl_study/rcabench_pipeline.py",
+      "destination_path": "src/rcl_study/rcabench_pipeline.py",
+      "source_sha256": "f9e944725384879c9b771e84bba0154390e905d8bd7b1c4617d832b12e35f984",
+      "destination_sha256": "f9e944725384879c9b771e84bba0154390e905d8bd7b1c4617d832b12e35f984",
+      "role": "final_method_dependency"
+    },
+    {
+      "source_path": "rcl_study/rcabench_query_only_sota.py",
+      "destination_path": "src/rcl_study/rcabench_query_only_sota.py",
+      "source_sha256": "0d9a82d0813814decb8eab4d6bc7850ede99166a45fee8afff00543d4eadd5f2",
+      "destination_sha256": "94380701d8bbb9fd948ffd344f34867a89a149febdb537b6d26bb5402fcc47b9",
+      "role": "final_method_dependency",
+      "transforms": {
+        "machine_path_placeholders": 2
+      }
+    },
+    {
+      "source_path": "rcl_study/results.py",
+      "destination_path": "src/rcl_study/results.py",
+      "source_sha256": "02dc92a21cbc48cbd2b80658f53be74ff80d177f41a6809e7962c4704f5a47ee",
+      "destination_sha256": "02dc92a21cbc48cbd2b80658f53be74ff80d177f41a6809e7962c4704f5a47ee",
+      "role": "final_method_dependency"
+    },
+    {
+      "source_path": "rcl_study/semi_supervised_bounded.py",
+      "destination_path": "src/rcl_study/semi_supervised_bounded.py",
+      "source_sha256": "c688b1abdc1b5d52aec930190dcbecb97cdf7aabba254ce4a9f27116f78c038b",
+      "destination_sha256": "c688b1abdc1b5d52aec930190dcbecb97cdf7aabba254ce4a9f27116f78c038b",
+      "role": "final_method_dependency"
+    },
+    {
+      "source_path": "rcl_study/semi_supervised_smoke.py",
+      "destination_path": "src/rcl_study/semi_supervised_smoke.py",
+      "source_sha256": "b58a901017ce867c4576f4b0a624d2050c27c0891c94ef4ff220f4cc65e0d48b",
+      "destination_sha256": "b58a901017ce867c4576f4b0a624d2050c27c0891c94ef4ff220f4cc65e0d48b",
+      "role": "final_method_dependency"
+    },
+    {
+      "source_path": "rcl_study/service_continuous_cvae.py",
+      "destination_path": "src/rcl_study/service_continuous_cvae.py",
+      "source_sha256": "423991f6027f52045b1bf13df367c1e871465c1209d24931cf398973716a42b3",
+      "destination_sha256": "423991f6027f52045b1bf13df367c1e871465c1209d24931cf398973716a42b3",
+      "role": "final_method_dependency"
+    },
+    {
+      "source_path": "rcl_study/service_continuous_cvae_activity.py",
+      "destination_path": "src/rcl_study/service_continuous_cvae_activity.py",
+      "source_sha256": "af67ac2c8c70efb2abe86da0a01d1c647c32c598d03457ca2169d2b783fb2cb2",
+      "destination_sha256": "af67ac2c8c70efb2abe86da0a01d1c647c32c598d03457ca2169d2b783fb2cb2",
+      "role": "final_method_dependency"
+    },
+    {
+      "source_path": "rcl_study/service_continuous_cvae_generation.py",
+      "destination_path": "src/rcl_study/service_continuous_cvae_generation.py",
+      "source_sha256": "75c11c82b1ca15b969fdfca667313c9cc9379b824026f2c7f8d5439ae5588e6d",
+      "destination_sha256": "75c11c82b1ca15b969fdfca667313c9cc9379b824026f2c7f8d5439ae5588e6d",
+      "role": "final_method_dependency"
+    },
+    {
+      "source_path": "rcl_study/service_continuous_cvae_provenance.py",
+      "destination_path": "src/rcl_study/service_continuous_cvae_provenance.py",
+      "source_sha256": "af2ec34ba5d8cf46dc10e725a4b7bbdaaf91a7c3036aebd8db858d1066cebbf1",
+      "destination_sha256": "af2ec34ba5d8cf46dc10e725a4b7bbdaaf91a7c3036aebd8db858d1066cebbf1",
+      "role": "final_method_dependency"
+    },
+    {
+      "source_path": "rcl_study/service_continuous_cvae_training.py",
+      "destination_path": "src/rcl_study/service_continuous_cvae_training.py",
+      "source_sha256": "bf18e32b2236c4fa0081b716b329f37dc5b95dcfc3bfec9c090ca365e0341c0b",
+      "destination_sha256": "bf18e32b2236c4fa0081b716b329f37dc5b95dcfc3bfec9c090ca365e0341c0b",
+      "role": "final_method_dependency"
+    },
+    {
+      "source_path": "rcl_study/service_continuous_explicit.py",
+      "destination_path": "src/rcl_study/service_continuous_explicit.py",
+      "source_sha256": "7c8b81bda2f2f261c449805032169e4913da51c53985971b93338463e1fbd52a",
+      "destination_sha256": "7c8b81bda2f2f261c449805032169e4913da51c53985971b93338463e1fbd52a",
+      "role": "final_method_dependency"
+    },
+    {
+      "source_path": "rcl_study/service_continuous_neural_runner.py",
+      "destination_path": "src/rcl_study/service_continuous_neural_runner.py",
+      "source_sha256": "e8fbc414f38acb829611959a70ad26b4d9600f88f3974f5e073e68c11cc6f369",
+      "destination_sha256": "e8fbc414f38acb829611959a70ad26b4d9600f88f3974f5e073e68c11cc6f369",
+      "role": "final_method_dependency"
+    },
+    {
+      "source_path": "rcl_study/service_continuous_pairwise_bridge.py",
+      "destination_path": "src/rcl_study/service_continuous_pairwise_bridge.py",
+      "source_sha256": "f139372372596422e59a80192b6d7de821d214c441f74aface7ee4c836ea4ffd",
+      "destination_sha256": "f139372372596422e59a80192b6d7de821d214c441f74aface7ee4c836ea4ffd",
+      "role": "final_method_dependency"
+    },
+    {
+      "source_path": "rcl_study/service_continuous_proxy_mode_cvae.py",
+      "destination_path": "src/rcl_study/service_continuous_proxy_mode_cvae.py",
+      "source_sha256": "c78c5d5962d9e692180dd8b68acd8aeac70c0a04118384f4e2c087eed0ffc688",
+      "destination_sha256": "c78c5d5962d9e692180dd8b68acd8aeac70c0a04118384f4e2c087eed0ffc688",
+      "role": "final_method_dependency"
+    },
+    {
+      "source_path": "rcl_study/service_continuous_real_ranker_smoke.py",
+      "destination_path": "src/rcl_study/service_continuous_real_ranker_smoke.py",
+      "source_sha256": "7d17b91fb5ff10d2ed8621bb940947c27b75077ae1561be8589b99b532191eae",
+      "destination_sha256": "71f23f429450a2993bb853e919f4ae330624c92f90757182d9c93c56e3f9ab4e",
+      "role": "final_method_dependency",
+      "transforms": {
+        "machine_path_placeholders": 1
+      }
+    },
+    {
+      "source_path": "rcl_study/service_continuous_screen_gates.py",
+      "destination_path": "src/rcl_study/service_continuous_screen_gates.py",
+      "source_sha256": "7910a1b883c75526a2544e19cf7494df055b5c2ecde6d8af9770aca8f5517e0d",
+      "destination_sha256": "7910a1b883c75526a2544e19cf7494df055b5c2ecde6d8af9770aca8f5517e0d",
+      "role": "final_method_dependency"
+    },
+    {
+      "source_path": "rcl_study/service_continuous_screen_scoring.py",
+      "destination_path": "src/rcl_study/service_continuous_screen_scoring.py",
+      "source_sha256": "ed3da37aa3c8d30e18e763cdc81ba58ad491e6cbcb961d77452a5e88d8400645",
+      "destination_sha256": "ed3da37aa3c8d30e18e763cdc81ba58ad491e6cbcb961d77452a5e88d8400645",
+      "role": "final_method_dependency"
+    },
+    {
+      "source_path": "rcl_study/service_continuous_synthetic_admission.py",
+      "destination_path": "src/rcl_study/service_continuous_synthetic_admission.py",
+      "source_sha256": "b9e524dc950eb5390c88f7d9c7ee56d75000bf9c5a2002175636d894850c6f51",
+      "destination_sha256": "b9e524dc950eb5390c88f7d9c7ee56d75000bf9c5a2002175636d894850c6f51",
+      "role": "final_method_dependency"
+    },
+    {
+      "source_path": "rcl_study/service_continuous_synthetic_training.py",
+      "destination_path": "src/rcl_study/service_continuous_synthetic_training.py",
+      "source_sha256": "dd21b19193e10a041087104bc55edc03cce221e678d58e1b172194e0c38283d6",
+      "destination_sha256": "dd21b19193e10a041087104bc55edc03cce221e678d58e1b172194e0c38283d6",
+      "role": "final_method_dependency"
+    },
+    {
+      "source_path": "rcl_study/service_continuous_unlabeled_pool.py",
+      "destination_path": "src/rcl_study/service_continuous_unlabeled_pool.py",
+      "source_sha256": "ad990bf9eaef4f2778a19b26e33f4be97c02c7a7a421c0d320d2a47838d89ced",
+      "destination_sha256": "ad990bf9eaef4f2778a19b26e33f4be97c02c7a7a421c0d320d2a47838d89ced",
+      "role": "final_method_dependency"
+    },
+    {
+      "source_path": "rcl_study/unseen_fault_type_generalization.py",
+      "destination_path": "src/rcl_study/unseen_fault_type_generalization.py",
+      "source_sha256": "89d7b71d89d39a8662277b550a0a3b0191813ecb39e894748ba4f3e7ded12020",
+      "destination_sha256": "6acd540fc84070c0e660f386de95da45f3e699c352fa133bc421fcba53211f0d",
+      "role": "final_method_dependency",
+      "transforms": {
+        "machine_path_placeholders": 3
+      }
+    },
+    {
+      "source_path": "tests/test_final_rcl_contract.py",
+      "destination_path": "tests/test_final_rcl_contract.py",
+      "source_sha256": "c94301619191ea6b388cdbbf7f3d8760737b3dc446dfc49b056e8357786bc226",
+      "destination_sha256": "c94301619191ea6b388cdbbf7f3d8760737b3dc446dfc49b056e8357786bc226",
+      "role": "focused_upstream_test"
+    },
+    {
+      "source_path": "tests/test_final_rcl_evaluation.py",
+      "destination_path": "tests/test_final_rcl_evaluation.py",
+      "source_sha256": "c8116204c9c82b2f95d72680a5dc94bdd02d9e06ebafc77aee00d194f6e105d4",
+      "destination_sha256": "c8116204c9c82b2f95d72680a5dc94bdd02d9e06ebafc77aee00d194f6e105d4",
+      "role": "focused_upstream_test"
+    },
+    {
+      "source_path": "tests/test_final_rcl_execution.py",
+      "destination_path": "tests/test_final_rcl_execution.py",
+      "source_sha256": "c014b43a00c2ff4fc36ffeae418a12e9f5248312483756bff81de1442a2ec8fd",
+      "destination_sha256": "c014b43a00c2ff4fc36ffeae418a12e9f5248312483756bff81de1442a2ec8fd",
+      "role": "focused_upstream_test"
+    },
+    {
+      "source_path": "tests/test_final_rcl_hdbscan_proxy.py",
+      "destination_path": "tests/test_final_rcl_hdbscan_proxy.py",
+      "source_sha256": "36eb8b2914ab283a3868e01f21c67f6b98d5f6675b32424d410b2804afcd266b",
+      "destination_sha256": "36eb8b2914ab283a3868e01f21c67f6b98d5f6675b32424d410b2804afcd266b",
+      "role": "focused_upstream_test"
+    },
+    {
+      "source_path": "tests/test_final_rcl_neural_request.py",
+      "destination_path": "tests/test_final_rcl_neural_request.py",
+      "source_sha256": "09206446db0aac499f64ce0e9b4c731547d4bc3f4c47c17bc60ec78f74005d6b",
+      "destination_sha256": "09206446db0aac499f64ce0e9b4c731547d4bc3f4c47c17bc60ec78f74005d6b",
+      "role": "focused_upstream_test"
+    },
+    {
+      "source_path": "tests/test_final_rcl_oser.py",
+      "destination_path": "tests/test_final_rcl_oser.py",
+      "source_sha256": "574f4d4b5bb672b24964617db8278fdb7a1fd5319f088bc39055d39df264aea6",
+      "destination_sha256": "574f4d4b5bb672b24964617db8278fdb7a1fd5319f088bc39055d39df264aea6",
+      "role": "focused_upstream_test"
+    },
+    {
+      "source_path": "tests/test_final_rcl_oser_runner.py",
+      "destination_path": "tests/test_final_rcl_oser_runner.py",
+      "source_sha256": "e63ef19d4d10e1fb0dad12e4bc85893b20d43b4ae9a9964cace37b9d04a50e5a",
+      "destination_sha256": "e63ef19d4d10e1fb0dad12e4bc85893b20d43b4ae9a9964cace37b9d04a50e5a",
+      "role": "focused_upstream_test"
+    },
+    {
+      "source_path": "tests/test_final_rcl_pairwise.py",
+      "destination_path": "tests/test_final_rcl_pairwise.py",
+      "source_sha256": "660f423ecec961e8b280779f45f45fe574e01923c18a853cac579ff2465a7a87",
+      "destination_sha256": "660f423ecec961e8b280779f45f45fe574e01923c18a853cac579ff2465a7a87",
+      "role": "focused_upstream_test"
+    },
+    {
+      "source_path": "tests/test_final_rcl_real_execution.py",
+      "destination_path": "tests/test_final_rcl_real_execution.py",
+      "source_sha256": "22caa9d255319d0670b80609ecda4d405fa7d267de03a2650153cb5e64851246",
+      "destination_sha256": "22caa9d255319d0670b80609ecda4d405fa7d267de03a2650153cb5e64851246",
+      "role": "focused_upstream_test"
+    },
+    {
+      "source_path": "tests/test_final_rcl_training.py",
+      "destination_path": "tests/test_final_rcl_training.py",
+      "source_sha256": "ce12811d702d942fab2983adea0848f783a41fe62bd4747d9fc752e008874763",
+      "destination_sha256": "ce12811d702d942fab2983adea0848f783a41fe62bd4747d9fc752e008874763",
+      "role": "focused_upstream_test"
+    },
+    {
+      "source_path": "tests/test_run_final_rcl_formal_cli.py",
+      "destination_path": "tests/test_run_final_rcl_formal_cli.py",
+      "source_sha256": "54039dd6c8f0416fe6291f026ea65f1c4640fc8c8d42de26ab8155eee7e6d76b",
+      "destination_sha256": "54039dd6c8f0416fe6291f026ea65f1c4640fc8c8d42de26ab8155eee7e6d76b",
+      "role": "focused_upstream_test"
+    },
+    {
+      "source_path": "tests/test_run_final_rcl_real_smoke_cli.py",
+      "destination_path": "tests/test_run_final_rcl_real_smoke_cli.py",
+      "source_sha256": "ebc21b2d1812d66351138368f9fbc57a47a30d8ff652d55b19fff46298639b97",
+      "destination_sha256": "ebc21b2d1812d66351138368f9fbc57a47a30d8ff652d55b19fff46298639b97",
+      "role": "focused_upstream_test"
+    }
+  ],
+  "inventory_sha256": "7c4bb34f2e9c83abcdccc5e439c4021a49ff67b2125b89dd5c20f34d4b073c70"
+}
