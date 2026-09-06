@@ -154,7 +154,7 @@ git commit -m "test: add VAST data and secret firewall"
 - 创建：`pyproject.toml`
 - 创建：`.gitignore`
 
-- [ ] **步骤 1：编写失败测试**
+- [x] **步骤 1：编写失败测试**
 
 ```python
 def test_method_descriptor_freezes_selected_components():
@@ -168,13 +168,13 @@ def test_load_config_reads_packaged_default():
     assert load_default_config()["method_id"] == "hdbscan-proxy-cvae-compatible-oser-p02"
 ```
 
-- [ ] **步骤 2：运行测试确认因 `vast` 尚不存在而失败**
+- [x] **步骤 2：运行测试确认因 `vast` 尚不存在而失败**
 
 运行：`python -m pytest tests/test_vast_facade.py -q`
 
 预期：FAIL，错误包含 `ModuleNotFoundError: No module named 'vast'`。
 
-- [ ] **步骤 3：实现门面和项目配置**
+- [x] **步骤 3：实现门面和项目配置**
 
 ```python
 __version__ = "0.1.0.dev0"
@@ -190,13 +190,13 @@ def describe_method() -> dict[str, object]:
 
 `pyproject.toml` 使用 `src` 布局，声明 Python 3.12 和 NumPy/pandas/SciPy/scikit-learn/threadpoolctl/PyTorch 依赖，并为 pytest 添加 `src` 与仓库根路径。
 
-- [ ] **步骤 4：运行门面测试确认通过**
+- [x] **步骤 4：运行门面测试确认通过**
 
 运行：`python -m pytest tests/test_vast_facade.py -q`
 
 预期：全部通过。
 
-- [ ] **步骤 5：提交任务 3**
+- [x] **步骤 5：提交任务 3**
 
 ```text
 git add src/vast tests/test_vast_facade.py pyproject.toml .gitignore

@@ -1,0 +1,96 @@
+{
+  "schema_version": "final-rcl-method-config-v1",
+  "method_id": "hdbscan-proxy-cvae-compatible-oser-p02",
+  "seed": 42,
+  "split": {
+    "kind": "existing_chronological_outer_split",
+    "outer_train_ratio": 0.7,
+    "outer_test_ratio": 0.3,
+    "fit_population": "outer_train_only",
+    "evaluation_population": "outer_test_only"
+  },
+  "active_learning": {
+    "authority_package": "artifacts/rcl-active-learning-fixed-v1-20260906",
+    "representation_id": "global_pca_dim32",
+    "clusterer_id": "hdbscan",
+    "cluster_selection_method": "leaf",
+    "selector_id": "center",
+    "budget": 30,
+    "allow_single_cluster": false,
+    "datasets": {
+      "rcabench": {
+        "min_cluster_size": 5,
+        "min_samples": 5,
+        "query_plan_sha256": "712ac6d9ac60b8f717db074f411fbf645a6eff925b462dca35b27c7dba109b6a",
+        "representation_matrix_sha256": "02361dba9428a207a6df03462a278036c525c4cbcdcd7730967ecb4c02400021",
+        "geometry_sha256": "c8c0a44f3a204b080696b6f6b770203e4f3c1dabed2633a0d8c00aff091259fd",
+        "partition_sha256": "96694bd2331b059d19f79c45d14ccbc57766480ef7eb6d6a9661fb854f2b2afd"
+      },
+      "aiops2022_pre": {
+        "min_cluster_size": 6,
+        "min_samples": 2,
+        "query_plan_sha256": "5a69678c9ac1477adfb9f3f83885ba78b7d1fd0e528cb2f3832f91e14009f0f9",
+        "representation_matrix_sha256": "c9ed2855078e8ddc6c9d75821d2c92302371b9d6e26956f607a354b8a0c069ff",
+        "geometry_sha256": "ba9996dda6f92b0d2489ca7cd11f25c2044166992ef75fea48f07ed2f881171f",
+        "partition_sha256": "427ab7aa4693f7479dae4661f3d4213d315fa3cc37708b95641beb19dd77a8d7"
+      }
+    }
+  },
+  "cvae": {
+    "arm_id": "proxy_mode_cvae_compatible",
+    "profile_id": "balanced",
+    "profile_table_file_sha256": "7e67fe6b114ebf548402dd15318632800df79e77b70c6c21f1cae76737f81042",
+    "generation_profile_sha256": "f9cd73c6fef481201fba24e5558da535b5f77c2816009c0e24710a3fa94adbc2",
+    "architecture": "factorized_feature_state_conditional_vae",
+    "activation": "silu",
+    "normalization": "layer_norm",
+    "optimizer": "adamw",
+    "learning_rate": 0.001,
+    "weight_decay": 0.0001,
+    "batch_size": 64,
+    "gradient_clip_norm": 5.0,
+    "hidden_width": 128,
+    "mechanism_latent_width": 12,
+    "propagation_latent_width": 12,
+    "context_latent_width": 12,
+    "kl_weight": 0.0005,
+    "sampling_radius": 0.5,
+    "masked_reconstruction_weight": 1.0,
+    "mechanism_consistency_weight": 1.5,
+    "target_context_weight": 0.75,
+    "cycle_consistency_weight": 0.75,
+    "max_epochs": 150,
+    "early_stopping_patience": 15,
+    "early_stopping_min_delta": 0.0001,
+    "samples_per_target": 1,
+    "mechanism_sampling_policy": "bounded_source_posterior",
+    "cross_fault_labeled_interpolation": false,
+    "same_fault_interpolation": "optional_when_repeated_queried_labels_exist",
+    "target_scope": "all_hard_compatible_dataset_candidates",
+    "synthetic_mass_per_real_parent": 1.0,
+    "synthetic_query_budget_cost": 0
+  },
+  "oser": {
+    "profile_id": "oser-p02",
+    "profile_sha256": "ef4f2c0229e8549cc2b85d33bf6478d10870606929cf156a4e99a60d70eb581a",
+    "state_width": 32,
+    "residual_cap": 0.05,
+    "gate_threshold": 0.5,
+    "lambda_meta": 0.5,
+    "inner_updates": 1,
+    "inner_learning_rate": 0.05,
+    "training_steps": 30,
+    "base_training_steps": 50,
+    "outer_query_population": "real_cases_only",
+    "support_synthetic_policy": "non_hidden_parent_families"
+  },
+  "outer_router": {
+    "enabled": false,
+    "forbidden_arm_id": "residual_only"
+  },
+  "formal_arms": [
+    "hdbscan_query_cvae_oser",
+    "oracle_full_cvae_oser",
+    "hdbscan_query_pairwise"
+  ]
+}

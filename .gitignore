@@ -1,0 +1,46 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+.pytest-tmp/
+.pytest_tmp/
+.venv/
+venv/
+
+# Editors and operating systems
+.idea/
+.vscode/
+.DS_Store
+Thumbs.db
+
+# Local inputs, outputs, and learned artifacts
+data/
+datasets/
+outputs/
+results/
+scores/
+candidate_pools/
+query_plans/
+feature_inventories/
+checkpoints/
+*.pt
+*.pth
+*.ckpt
+*.npy
+*.npz
+*.parquet
+*.pkl
+*.pickle
+*.joblib
+*.h5
+*.hdf5
+*.csv
+*.xlsx
+
+# Secrets and local environment
+.env
+.env.*
+!.env.example
+*.pem
+*.key
