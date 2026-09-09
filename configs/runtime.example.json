@@ -1,0 +1,29 @@
+{
+  "schema_version": "vast-runtime-v1",
+  "output_root": "/srv/vast-runs/B-seed42-smoke",
+  "worker_python": "/opt/conda/envs/vast-worker/bin/python",
+  "device": "cuda:0",
+  "regimes": ["query_only", "oracle_full"],
+  "datasets": [
+    {
+      "dataset_id": "rcabench",
+      "feature_dir": "/srv/vast-inputs/features/rcabench",
+      "split_manifest": "/srv/vast-inputs/rcabench-split.json",
+      "query_plan": "/srv/vast-inputs/rcabench-center-seed42.json",
+      "supervision_plans": {
+        "query_only": "/srv/vast-inputs/rcabench-query-supervision.json",
+        "oracle_full": "/srv/vast-inputs/rcabench-oracle-supervision.json"
+      }
+    },
+    {
+      "dataset_id": "aiops2022_pre",
+      "feature_dir": "/srv/vast-inputs/features/hd1",
+      "split_manifest": "/srv/vast-inputs/aiops22-split.json",
+      "query_plan": "/srv/vast-inputs/aiops22-center-seed42.json",
+      "supervision_plans": {
+        "query_only": "/srv/vast-inputs/aiops22-query-supervision.json",
+        "oracle_full": "/srv/vast-inputs/aiops22-oracle-supervision.json"
+      }
+    }
+  ]
+}

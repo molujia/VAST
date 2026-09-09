@@ -18,6 +18,8 @@ Thumbs.db
 # Local inputs, outputs, and learned artifacts
 data/
 datasets/
+!src/vast/_historical/half_supervise/src/nexusrcl_rebuild/datasets/
+!src/vast/_historical/half_supervise/src/nexusrcl_rebuild/datasets/*.py
 outputs/
 results/
 scores/

@@ -40,46 +40,6 @@ class SnapshotError(ValueError):
     """Raised when the requested snapshot is incomplete or unsafe."""
 
 
-PYTHON_ROOTS = (
-    "rcl_study/__init__.py",
-    "rcl_study/final_rcl_contract.py",
-    "rcl_study/final_rcl_evaluation.py",
-    "rcl_study/final_rcl_execution.py",
-    "rcl_study/final_rcl_hdbscan_proxy.py",
-    "rcl_study/final_rcl_oser.py",
-    "rcl_study/final_rcl_oser_runner.py",
-    "rcl_study/final_rcl_pairwise.py",
-    "rcl_study/final_rcl_real_execution.py",
-    "rcl_study/final_rcl_training.py",
-    "scripts/__init__.py",
-    "scripts/run_final_rcl_formal.py",
-    "scripts/run_final_rcl_real_smoke.py",
-    "scripts/status_final_rcl.py",
-)
-RUNTIME_ROOTS = (
-    "rcl_study/service_continuous_neural_runner.py",
-    "rcl_study/service_continuous_real_ranker_smoke.py",
-)
-FOCUSED_TEST_NAMES = (
-    "test_final_rcl_contract.py",
-    "test_final_rcl_evaluation.py",
-    "test_final_rcl_execution.py",
-    "test_final_rcl_hdbscan_proxy.py",
-    "test_final_rcl_neural_request.py",
-    "test_final_rcl_oser.py",
-    "test_final_rcl_oser_runner.py",
-    "test_final_rcl_pairwise.py",
-    "test_final_rcl_real_execution.py",
-    "test_final_rcl_training.py",
-    "test_run_final_rcl_formal_cli.py",
-    "test_run_final_rcl_real_smoke_cli.py",
-)
-PAIRWISE_BACKEND_FILES = (
-    "half_supervise/src/nexusrcl_rebuild/__init__.py",
-    "half_supervise/src/nexusrcl_rebuild/training/__init__.py",
-    "half_supervise/src/nexusrcl_rebuild/training/pairwise_backend.py",
-)
-FROZEN_CONFIG = "configs/final_rcl/hdbscan_proxy_cvae_oser_seed42.json"
 INVENTORY_PATH = "docs/provenance/source-inventory.json"
 _AUTHORITY_HOME = "/" + "home/" + "wangrunzhou"
 MACHINE_PATH_REPLACEMENTS = (
@@ -115,6 +75,9 @@ def _relative_path(value: str | Path) -> PurePosixPath:
 
 def _assert_allowed(relative_path: PurePosixPath) -> None:
     lowered = {part.lower() for part in relative_path.parts}
+    if (str(relative_path).startswith("src/vast/_historical/half_supervise/src/nexusrcl_rebuild/datasets/")
+            and relative_path.suffix == ".py"):
+        lowered.discard("datasets")
     forbidden = sorted(lowered.intersection(FORBIDDEN_PARTS))
     if forbidden or relative_path.suffix.lower() in FORBIDDEN_SUFFIXES:
         reason = forbidden[0] if forbidden else relative_path.suffix
@@ -348,8 +311,8 @@ def write_source_inventory(
         raise SnapshotError("duplicate destination path in source inventory")
     payload: dict[str, object] = {
         "schema_version": "vast-source-inventory-v1",
-        "snapshot_date": date(2026, 9, 6).isoformat(),
-        "method_id": "hdbscan-proxy-cvae-compatible-oser-p02",
+        "snapshot_date": date(2026, 9, 9).isoformat(),
+        "method_id": "historical-snapshot-latent-B-oser-p02",
         "source_authorities": dict(sorted(source_authorities.items())),
         "file_count": len(ordered_rows),
         "files": ordered_rows,
@@ -402,60 +365,8 @@ def verify_source_inventory(
     }
 
 
-def _copy_python_closure(
-    source_root: Path, destination_root: Path
-) -> list[dict[str, object]]:
-    rows: list[dict[str, object]] = []
-    for relative in collect_python_closure(
-        source_root, roots=PYTHON_ROOTS, runtime_roots=RUNTIME_ROOTS
-    ):
-        destination = f"src/{relative}" if relative.startswith("rcl_study/") else relative
-        rows.append(
-            copy_snapshot_file(
-                source_root,
-                destination_root,
-                relative,
-                destination_relative_path=destination,
-                role=(
-                    "final_method_dependency"
-                    if relative.startswith("rcl_study/")
-                    else "runtime_entrypoint"
-                ),
-                sanitize_paths=True,
-            )
-        )
-    return rows
 
 
-def _copy_hdbscan_authority(
-    source_root: Path, destination_root: Path
-) -> list[dict[str, object]]:
-    authority = (
-        source_root
-        / "artifacts"
-        / "rcl-active-learning-fixed-v1-20260906"
-        / "src"
-        / "fixed_active_learning"
-    )
-    if not authority.is_dir():
-        raise SnapshotError(f"missing fixed HDBSCAN authority: {authority}")
-    rows: list[dict[str, object]] = []
-    for source in sorted(authority.rglob("*.py")):
-        relative_inside = source.relative_to(authority).as_posix()
-        if "__pycache__" in PurePosixPath(relative_inside).parts:
-            continue
-        source_relative = source.relative_to(source_root).as_posix()
-        rows.append(
-            copy_snapshot_file(
-                source_root,
-                destination_root,
-                source_relative,
-                destination_relative_path=f"src/fixed_active_learning/{relative_inside}",
-                role="fixed_hdbscan_authority",
-                sanitize_paths=True,
-            )
-        )
-    return rows
 
 
 def materialize_snapshot(
@@ -463,57 +374,13 @@ def materialize_snapshot(
 ) -> dict[str, object]:
     """Copy the selected method closure and produce its provenance manifest."""
 
-    source_root = source_root.resolve()
-    destination_root = destination_root.resolve()
-    rows = _copy_python_closure(source_root, destination_root)
-    rows.extend(_copy_hdbscan_authority(source_root, destination_root))
-    for relative in PAIRWISE_BACKEND_FILES:
-        suffix = relative.removeprefix("half_supervise/src/")
-        rows.append(
-            copy_snapshot_file(
-                source_root,
-                destination_root,
-                relative,
-                destination_relative_path=f"src/{suffix}",
-                role="minimal_pairwise_backend",
-                sanitize_paths=True,
-            )
-        )
-    rows.append(
-        copy_snapshot_file(
-            source_root,
-            destination_root,
-            FROZEN_CONFIG,
-            role="frozen_method_config",
-            sanitize_paths=True,
-        )
-    )
-    for name in FOCUSED_TEST_NAMES:
-        rows.append(
-            copy_snapshot_file(
-                source_root,
-                destination_root,
-                f"tests/{name}",
-                role="focused_upstream_test",
-                sanitize_paths=True,
-            )
-        )
-    inventory_path = write_source_inventory(
-        destination_root,
-        rows=rows,
-        source_authorities={
-            "active_learning": "rcl-active-learning-fixed-v1-20260906",
-            "integration_change": "integrate-hdbscan-proxy-cvae-oser-rcl",
-            "pairwise_backend": "half_supervise/nexusrcl_rebuild",
-        },
-    )
-    audit = verify_source_inventory(
-        destination_root, inventory_path=inventory_path
-    )
-    return {
-        **audit,
-        "inventory_path": inventory_path.as_posix(),
-    }
+    from tools.final_sources import materialize
+    inventory_path = materialize(source_root, destination_root, copy_snapshot_file,
+        write_source_inventory, sanitize_machine_paths)
+    return {**verify_source_inventory(destination_root, inventory_path=inventory_path),
+            "inventory_path": inventory_path.as_posix()}
+
+
 
 
 def main() -> int:

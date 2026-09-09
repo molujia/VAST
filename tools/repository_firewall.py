@@ -124,6 +124,9 @@ def _candidate_files(root: Path) -> Iterable[Path]:
 
 def _path_finding(relative: PurePosixPath) -> Finding | None:
     directory_parts = {part.lower() for part in relative.parts[:-1]}
+    if (str(relative).startswith("src/vast/_historical/half_supervise/src/nexusrcl_rebuild/datasets/")
+            and relative.suffix == ".py"):
+        directory_parts.discard("datasets")
     forbidden_parts = sorted(directory_parts.intersection(FORBIDDEN_DIRECTORY_PARTS))
     suffix = relative.suffix.lower()
     if forbidden_parts:
@@ -158,6 +161,8 @@ def scan_repository(root: Path) -> list[Finding]:
     root = root.resolve()
     findings: list[Finding] = []
     for path in _candidate_files(root):
+        if not path.exists() and not path.is_symlink():
+            continue  # Git still lists unstaged deletions until commit staging.
         try:
             relative = PurePosixPath(path.resolve().relative_to(root).as_posix())
         except (OSError, ValueError):
