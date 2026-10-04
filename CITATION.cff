@@ -1,0 +1,27 @@
+cff-version: 1.2.0
+message: "If you use this implementation, cite this software and record the exact commit. Cite the accompanying VAST manuscript separately for its scientific findings."
+type: software
+title: "VAST: Multimodal Active Learning and CVAE-Enhanced Ranking"
+version: 1.0.0
+repository-code: "https://github.com/molujia/VAST"
+url: "https://github.com/molujia/VAST"
+authors:
+  - family-names: Wang
+    given-names: Runzhou
+  - family-names: Zhang
+    given-names: Shenglin
+  - family-names: Gu
+    given-names: Wenwei
+  - family-names: Zhao
+    given-names: Yongxin
+  - family-names: Zhao
+    given-names: Chenyu
+  - family-names: Pei
+    given-names: Dan
+abstract: "Method implementation for supervised microservice root cause localization using multimodal batch acquisition, candidate-state CVAE representations, posterior augmentation, pairwise ranking, and internal bounded correction. Benchmark inputs and the paper's experiment suite are not included."
+keywords:
+  - microservices
+  - root cause localization
+  - multimodal active learning
+  - conditional variational autoencoder
+  - service ranking

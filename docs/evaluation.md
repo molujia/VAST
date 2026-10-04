@@ -1,5 +1,11 @@
 # Evaluation and interpretation
 
+> **Archived evidence.** This document preserves evaluation records distributed
+> with the v1.0.0 implementation. They are not the final VAST manuscript's
+> five-seed (40–44) experiment package. The maintained repository scope is the
+> method implementation, not the paper's experiment suite. These tables must
+> not be substituted for the final paper's reported means.
+
 [Back to README](../README.md) · [Reproduction guide](reproducibility.md) · [Aggregate results](evaluation-summary.json)
 
 This document separates the frozen release scores from subsequent evidence about the method. All values come from completed, accepted experiment reports. The release remains the continuous-latent B recipe; the supplementary study does not select a new default from its ablations.
@@ -29,7 +35,7 @@ Metrics are proportions, not percentages. A difference of 0.01 is one percentage
 
 The ordinary split has 995 training / 427 test fault incidents for RCABench and 169 / 72 for AIOps22-pre. Query-only labels 30 training incidents in each dataset. Oracle-full labels all outer training faults; it is a supervision condition, not a guaranteed accuracy upper bound. See [population and input order](reproducibility.md#independent-split-manifest).
 
-The fixed seed-42 table is in the [README](../README.md#released-b-seed-42). It reproduces the selected release report, including the adverse AIOps results. Against H, B changes TOP135/MRR as follows:
+The fixed seed-42 metrics are retained in the [aggregate JSON](evaluation-summary.json). They reproduce the archived selected release report, including the adverse AIOps results. Against H, B changes TOP135/MRR as follows:
 
 | Dataset | Supervision | H TOP135 | B − H TOP135 | H MRR | B − H MRR |
 |---|---|---:|---:|---:|---:|
