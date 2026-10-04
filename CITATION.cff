@@ -3,6 +3,7 @@ message: "If you use this implementation, cite this software and record the exac
 type: software
 title: "VAST: Multimodal Active Learning and CVAE-Enhanced Ranking"
 version: 1.0.0
+license: MIT
 repository-code: "https://github.com/molujia/VAST"
 url: "https://github.com/molujia/VAST"
 authors:

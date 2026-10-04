@@ -281,4 +281,4 @@ Software citation metadata is provided in [`CITATION.cff`](CITATION.cff). Record
 
 For questions and bug reports, use [GitHub Issues](https://github.com/molujia/VAST/issues). Include the commit, controller/worker versions, command, and relevant error message. Do not attach private telemetry, credentials, or trained artifacts containing sensitive incident information.
 
-**License:** no repository license is currently declared. Check the applicable permissions before redistribution or reuse. Third-party benchmarks have their own access and licensing terms.
+**License:** VAST is released under the [MIT License](LICENSE). Third-party dependencies and benchmarks remain subject to their own licenses and access terms.
