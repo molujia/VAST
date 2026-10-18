@@ -1,8 +1,8 @@
 cff-version: 1.2.0
-message: "If you use this implementation, cite this software and record the exact commit. Cite the accompanying VAST manuscript separately for its scientific findings."
+message: "If you use this implementation, cite this software and record the exact commit. This development release does not establish benchmark performance."
 type: software
-title: "VAST: Multimodal Active Learning and CVAE-Enhanced Ranking"
-version: 1.0.0
+title: "VAST: Propagation-aware Active PNU Root Cause Localization"
+version: 3.0.0.dev0
 license: MIT
 repository-code: "https://github.com/molujia/VAST"
 url: "https://github.com/molujia/VAST"
@@ -19,10 +19,11 @@ authors:
     given-names: Chenyu
   - family-names: Pei
     given-names: Dan
-abstract: "Method implementation for supervised microservice root cause localization using multimodal batch acquisition, candidate-state CVAE representations, posterior augmentation, pairwise ranking, and internal bounded correction. Benchmark inputs and the paper's experiment suite are not included."
+abstract: "Reference implementation of multimodal process encoding, propagation-coverage acquisition, and active positive-negative-unlabeled learning for microservice root cause localization. Datasets, trained weights, and completed benchmark results are not included."
 keywords:
   - microservices
   - root cause localization
   - multimodal active learning
-  - conditional variational autoencoder
+  - positive-negative-unlabeled learning
+  - propagation coverage
   - service ranking

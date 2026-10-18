@@ -1,0 +1,183 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:vast-v3:semantic-annotation:1.0",
+  "title": "VAST-V3 observation-grounded semantic annotation",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "status", "purpose", "case", "provenance", "root_supervision", "coverage", "entities", "evidence", "events", "symptoms", "relations", "fragments"],
+  "properties": {
+    "schema_version": {"const": "1.0"},
+    "status": {"enum": ["draft", "submitted"]},
+    "purpose": {"enum": [null, "semantic_evaluation", "demonstration"]},
+    "case": {
+      "type": "object", "additionalProperties": false,
+      "required": ["dataset", "case_id", "window_start", "window_end", "time_origin", "time_unit", "source_manifest_sha256"],
+      "properties": {
+        "dataset": {"enum": [null, "D1", "D2"]},
+        "case_id": {"$ref": "#/$defs/nullableText"},
+        "window_start": {"$ref": "#/$defs/nullableTimestamp"},
+        "window_end": {"$ref": "#/$defs/nullableTimestamp"},
+        "time_origin": {"$ref": "#/$defs/nullableTimestamp"},
+        "time_unit": {"const": "seconds"},
+        "source_manifest_sha256": {"oneOf": [{"type": "null"}, {"$ref": "#/$defs/sha256"}]}
+      }
+    },
+    "provenance": {
+      "type": "object", "additionalProperties": false,
+      "required": ["prepared_by", "preparation_basis", "expert_confirmation"],
+      "properties": {
+        "prepared_by": {"enum": ["assistant", "human", "assistant_and_human"]},
+        "preparation_basis": {"enum": ["template_only_no_case_analysis", "observation_based"]},
+        "expert_confirmation": {
+          "type": "object", "additionalProperties": false,
+          "required": ["status", "confirmed_by", "confirmed_at", "confirmation_ref"],
+          "properties": {
+            "status": {"enum": ["not_reviewed", "in_review", "confirmed", "changes_requested"]},
+            "confirmed_by": {"$ref": "#/$defs/nullableText"},
+            "confirmed_at": {"$ref": "#/$defs/nullableTimestamp"},
+            "confirmation_ref": {"$ref": "#/$defs/nullableText"}
+          }
+        }
+      }
+    },
+    "root_supervision": {
+      "type": "object", "additionalProperties": false,
+      "required": ["availability", "source_ref"],
+      "properties": {
+        "availability": {"enum": ["unavailable", "complete_set"]},
+        "source_ref": {"$ref": "#/$defs/nullableText"}
+      }
+    },
+    "coverage": {
+      "type": "object", "additionalProperties": false,
+      "required": ["overall", "missing_modalities", "limitations"],
+      "properties": {
+        "overall": {"enum": ["sufficient", "partial", "insufficient", "unknown"]},
+        "missing_modalities": {"type": "array", "uniqueItems": true, "items": {"$ref": "#/$defs/modality"}},
+        "limitations": {"$ref": "#/$defs/textList"}
+      }
+    },
+    "entities": {"type": "array", "items": {"$ref": "#/$defs/entity"}},
+    "evidence": {"type": "array", "items": {"$ref": "#/$defs/evidence"}},
+    "events": {"type": "array", "items": {"$ref": "#/$defs/event"}},
+    "symptoms": {"type": "array", "items": {"$ref": "#/$defs/symptom"}},
+    "relations": {"type": "array", "items": {"$ref": "#/$defs/relation"}},
+    "fragments": {"type": "array", "items": {"$ref": "#/$defs/fragment"}}
+  },
+  "$defs": {
+    "text": {"type": "string", "minLength": 1, "pattern": "\\S"},
+    "nullableText": {"oneOf": [{"type": "null"}, {"$ref": "#/$defs/text"}]},
+    "textList": {"type": "array", "items": {"$ref": "#/$defs/text"}},
+    "refs": {"type": "array", "uniqueItems": true, "items": {"$ref": "#/$defs/text"}},
+    "timestamp": {"type": "string", "format": "date-time"},
+    "nullableTimestamp": {"oneOf": [{"type": "null"}, {"$ref": "#/$defs/timestamp"}]},
+    "sha256": {"type": "string", "pattern": "^[a-fA-F0-9]{64}$"},
+    "modality": {"enum": ["metric", "trace", "log", "topology"]},
+    "interval": {
+      "type": "object", "additionalProperties": false,
+      "required": ["start", "end", "resolution_seconds"],
+      "properties": {
+        "start": {"$ref": "#/$defs/timestamp"},
+        "end": {"$ref": "#/$defs/timestamp"},
+        "resolution_seconds": {"type": "number", "exclusiveMinimum": 0}
+      }
+    },
+    "direction": {
+      "type": "object", "additionalProperties": false,
+      "required": ["source", "target"],
+      "properties": {"source": {"$ref": "#/$defs/text"}, "target": {"$ref": "#/$defs/text"}}
+    },
+    "entity": {
+      "type": "object", "additionalProperties": false,
+      "required": ["id", "category", "candidate", "root_role", "observation_state", "evidence_refs"],
+      "properties": {
+        "id": {"$ref": "#/$defs/text"},
+        "category": {"enum": ["service", "pod", "host", "container", "process", "other"]},
+        "candidate": {"type": "boolean"},
+        "root_role": {"enum": ["root", "nonroot", "unknown"]},
+        "observation_state": {"enum": ["detected", "not_detected", "unknown"]},
+        "evidence_refs": {"$ref": "#/$defs/refs"}
+      }
+    },
+    "evidence": {
+      "type": "object", "additionalProperties": false,
+      "required": ["id", "modality", "path", "sha256", "locator", "interval", "entity_ids", "note"],
+      "properties": {
+        "id": {"$ref": "#/$defs/text"}, "modality": {"$ref": "#/$defs/modality"},
+        "path": {"$ref": "#/$defs/text"}, "sha256": {"$ref": "#/$defs/sha256"},
+        "locator": {"$ref": "#/$defs/text"}, "interval": {"$ref": "#/$defs/interval"},
+        "entity_ids": {"$ref": "#/$defs/refs"}, "note": {"$ref": "#/$defs/nullableText"}
+      }
+    },
+    "event": {
+      "type": "object", "additionalProperties": false,
+      "required": ["id", "entity_id", "interval", "symptom_ids", "evidence_refs"],
+      "properties": {
+        "id": {"$ref": "#/$defs/text"}, "entity_id": {"$ref": "#/$defs/text"},
+        "interval": {"$ref": "#/$defs/interval"},
+        "symptom_ids": {"$ref": "#/$defs/refs"}, "evidence_refs": {"$ref": "#/$defs/refs"}
+      }
+    },
+    "symptom": {
+      "type": "object", "additionalProperties": false,
+      "required": ["id", "entity_id", "category", "modality", "direction", "magnitude", "interval", "evidence_refs", "unknown_reason"],
+      "properties": {
+        "id": {"$ref": "#/$defs/text"}, "entity_id": {"$ref": "#/$defs/text"},
+        "category": {"enum": ["latency", "error", "traffic", "resource", "log_pattern", "availability", "other", "unknown"]},
+        "modality": {"$ref": "#/$defs/modality"},
+        "direction": {"enum": ["increase", "decrease", "changed", "stable", "unknown"]},
+        "magnitude": {
+          "oneOf": [{"type": "null"}, {
+            "type": "object", "additionalProperties": false,
+            "required": ["value", "unit", "baseline", "description"],
+            "properties": {
+              "value": {"type": "number"}, "unit": {"$ref": "#/$defs/text"},
+              "baseline": {"type": ["number", "null"]}, "description": {"$ref": "#/$defs/text"}
+            }
+          }]
+        },
+        "interval": {"$ref": "#/$defs/interval"}, "evidence_refs": {"$ref": "#/$defs/refs"},
+        "unknown_reason": {"$ref": "#/$defs/nullableText"}
+      }
+    },
+    "relation": {
+      "type": "object", "additionalProperties": false,
+      "required": ["id", "type", "source_entity", "target_entity", "call_direction", "impact_direction", "impact_status", "evidence_refs", "explanation"],
+      "properties": {
+        "id": {"$ref": "#/$defs/text"}, "type": {"enum": ["call", "placement", "same_entity", "other"]},
+        "source_entity": {"$ref": "#/$defs/text"}, "target_entity": {"$ref": "#/$defs/text"},
+        "call_direction": {"oneOf": [{"type": "null"}, {"$ref": "#/$defs/direction"}]},
+        "impact_direction": {"oneOf": [{"type": "null"}, {"$ref": "#/$defs/direction"}]},
+        "impact_status": {"enum": ["observed", "hypothesized", "unknown"]},
+        "evidence_refs": {"$ref": "#/$defs/refs"}, "explanation": {"$ref": "#/$defs/text"}
+      }
+    },
+    "edge": {
+      "type": "object", "additionalProperties": false,
+      "required": ["id", "source_event", "target_event", "relation_id", "temporal_order", "delay_seconds", "evidence_refs", "unknown_reason"],
+      "properties": {
+        "id": {"$ref": "#/$defs/text"}, "source_event": {"$ref": "#/$defs/text"},
+        "target_event": {"$ref": "#/$defs/text"}, "relation_id": {"$ref": "#/$defs/text"},
+        "temporal_order": {"enum": ["before", "unknown"]},
+        "delay_seconds": {
+          "type": "object", "additionalProperties": false, "required": ["lower", "upper"],
+          "properties": {"lower": {"type": ["number", "null"], "minimum": 0}, "upper": {"type": ["number", "null"], "minimum": 0}}
+        },
+        "evidence_refs": {"$ref": "#/$defs/refs"}, "unknown_reason": {"$ref": "#/$defs/nullableText"}
+      }
+    },
+    "fragment": {
+      "type": "object", "additionalProperties": false,
+      "required": ["id", "event_ids", "edges", "family", "ordered_paths", "interpretation", "certainty", "evidence_refs", "unknowns"],
+      "properties": {
+        "id": {"$ref": "#/$defs/text"}, "event_ids": {"$ref": "#/$defs/refs"},
+        "edges": {"type": "array", "items": {"$ref": "#/$defs/edge"}},
+        "family": {"enum": ["chain", "branch", "convergence", "mixed", "partial", "local_symptom", "other", "unknown"]},
+        "ordered_paths": {"type": "array", "uniqueItems": true, "items": {"type": "array", "minItems": 2, "uniqueItems": true, "items": {"$ref": "#/$defs/text"}}},
+        "interpretation": {"$ref": "#/$defs/text"},
+        "certainty": {"enum": ["supported_interpretation", "hypothesis", "unresolved"]},
+        "evidence_refs": {"$ref": "#/$defs/refs"}, "unknowns": {"$ref": "#/$defs/textList"}
+      }
+    }
+  }
+}

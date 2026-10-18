@@ -1,0 +1,32 @@
+{
+  "schema_version": "1.0",
+  "status": "draft",
+  "purpose": null,
+  "case": {
+    "dataset": null,
+    "case_id": null,
+    "window_start": null,
+    "window_end": null,
+    "time_origin": null,
+    "time_unit": "seconds",
+    "source_manifest_sha256": null
+  },
+  "provenance": {
+    "prepared_by": "assistant",
+    "preparation_basis": "template_only_no_case_analysis",
+    "expert_confirmation": {
+      "status": "not_reviewed",
+      "confirmed_by": null,
+      "confirmed_at": null,
+      "confirmation_ref": null
+    }
+  },
+  "root_supervision": {"availability": "unavailable", "source_ref": null},
+  "coverage": {"overall": "unknown", "missing_modalities": [], "limitations": []},
+  "entities": [],
+  "evidence": [],
+  "events": [],
+  "symptoms": [],
+  "relations": [],
+  "fragments": []
+}
