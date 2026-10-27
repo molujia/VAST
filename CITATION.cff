@@ -1,7 +1,7 @@
 cff-version: 1.2.0
 message: "If you use this implementation, cite this software and record the exact commit. This development release does not establish benchmark performance."
 type: software
-title: "VAST: Propagation-aware Active PNU Root Cause Localization"
+title: "VAST: Propagation-Aware Active Semi-Supervised Learning for Microservice Root Cause Localization"
 version: 3.0.0.dev0
 license: MIT
 repository-code: "https://github.com/molujia/VAST"
@@ -19,11 +19,23 @@ authors:
     given-names: Chenyu
   - family-names: Pei
     given-names: Dan
-abstract: "Reference implementation of multimodal process encoding, propagation-coverage acquisition, and active positive-negative-unlabeled learning for microservice root cause localization. Datasets, trained weights, and completed benchmark results are not included."
+abstract: >-
+  Reference implementation of VAST, the propagation-aware active semi-supervised
+  learning framework presented in "Which Cases Are Worth Labeling for Microservice
+  Root Cause Localization?" VAST combines the Symptom-Conditioned Ordered
+  Propagation Encoder (SCOPE), PropCover acquisition, and Root-Set-Conditioned
+  Completion (RSC) to learn candidate root-cause rankings for services, instances,
+  or hosts from metrics, logs, traces, and typed topology in labeled and permitted
+  unlabeled cases. PropCover selects complete cases for annotation based on
+  additional propagation coverage. Training combines root supervision, observation
+  self-supervision, and source-conditioned learning without treating inferred root
+  hypotheses as verified labels. Datasets, frozen split assets, trained weights,
+  completed benchmark results, and the complete paper-experiment automation suite
+  are not included.
 keywords:
   - microservices
   - root cause localization
   - multimodal active learning
-  - positive-negative-unlabeled learning
+  - semi-supervised learning
   - propagation coverage
-  - service ranking
+  - candidate root-cause ranking
